@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Boot Tutorial</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <h1 class="logo">Spring Boot Tutorial</h1>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li sec:authorize="hasRole('USER')" class="nav-item"><a href="/user-profile">User</a></li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a href="/admin-profile">Admin</a></li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item"><a href="/login">Login</a></li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form class="link" th:action="@{/logout}" method="post">
+                    <input class="link" type="submit" value="Logout"/>
+                </form></li>
+        </ul>
+    </nav>
+</div>
+
+<h1>Топ красивых котиков</h1>
+
+<h2>Топ 3</h2>
+<img src="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666137209_33-mykaleidoscope-ru-p-veselii-kotik-oboi-36.jpg" alt="" sizes="100">
+
+<h2>Топ 2</h2>
+<img src="https://sun6-21.userapi.com/impg/fqt4iggNjN8Yslz91HMRWSQXo6d681p4b6Bi7Q/9rDA9FHdi00.jpg?size=2560x1600&quality=95&sign=ce409e219488a64fc51bcfd60f2d2602&type=album" alt="">
+
+<h2>Топ 1</h2>
+<img src="https://img.razrisyika.ru/kart/24/1200/95244-kotiki-kartinki-14.jpg" alt="">
+
+<div th:fragment="main-text"></div>
+<div th:fragment="footer">
+    <p class="center">&#169; Example from internet</p>
+</div>
+</body>
+</html>
